@@ -2,16 +2,31 @@
 <html>
 <head>
     <meta charset="utf-8">
+
+    <link rel="stylesheet" type="text/css" href="./charts.css">
     <title>Demo</title>
 </head>
 <body>
-  <h1>Hello World! This is my Bar Chart</h1>
+  <h1 class='title'>Hello World! This is my Bar Chart</h1>
+
+
+  <div id="charts"></div>
 
     <a href="http://jquery.com/">jQuery</a>
-    <script src="jquery.js"></script>
+    <script src="./src/jquery-3.4.1.js"></script>
+    <script src="./index.js"></script>
+    <script src="./draw_bar_charts.js"></script>
+
     <script>
-
-
+      drawBarCharts([10,12,5,22],{width:600,height:300, title: "Bears Vs Beets"},"#charts")
+      drawBarCharts([19443,43250,8908,15930, 96302],{width:600,height:300,textLocation:'left',title: "My wonderful chart"},"#charts")
+      drawBarCharts([1004452,521840,78342,373398,484331],{width:600,height:300, title: "Project 1 Interest Levels Throughout Past Decade"},"#charts")
+      drawBarCharts([58,12,33,42],{width:600,height:300, title: "Number of Annual Mosquito Bites"},"#charts")
     </script>
+
+    <!--
+      <button class="alert">Click Meeee!</button>
+      <button id="addBarChart">Add Bar Chart</button>
+    -->
 </body>
 </html>

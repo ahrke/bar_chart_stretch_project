@@ -1,0 +1,38 @@
+body {
+  font-family: 'Courier New', Courier, monospace;
+  background-color: rgb(36, 36, 36);
+}
+
+.chartBack {
+  border-radius: 0 10px 10px 0;
+  background-color: rgb(44, 52, 59);
+  margin: 20px 100px 20px 50px;
+  padding: 20px;
+}
+
+.title {
+  text-align: center;
+  margin: 20px;
+  color: lightseagreen;
+}
+
+.bar {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  font-size: 2em;
+  font-weight: bolder;
+  color: aliceblue;
+  text-align: left;
+}
+
+.barTitle {
+  font-size: 2em;
+  color: aliceblue;
+  margin-bottom: 200px;
+  text-align: center;
+}
+
+.barText {
+  display: inline-block;
+  vertical-align: middle;
+}
