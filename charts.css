@@ -3,17 +3,21 @@ body {
   background-color: rgb(36, 36, 36);
 }
 
-.chartBack {
-  border-radius: 0 10px 10px 0;
-  background-color: rgb(44, 52, 59);
-  margin: 20px 100px 20px 50px;
-  padding: 20px;
-}
-
 .title {
   text-align: center;
   margin: 20px;
   color: lightseagreen;
+}
+
+.bars {
+  display: inline-block;
+}
+
+.chartBack {
+  border-radius: 0 10px 10px 0;
+  background-color: rgb(44, 52, 59);
+  margin: 20px 100px 20px 50px;
+  padding: 10px 10px 105px 10px;
 }
 
 .bar {
@@ -23,16 +27,39 @@ body {
   font-weight: bolder;
   color: aliceblue;
   text-align: left;
+  display: block;
 }
 
-.barTitle {
+.chartTitle {
   font-size: 2em;
   color: aliceblue;
-  margin-bottom: 200px;
+  padding: 10px;
+  background-color: rgb(36, 36, 36);
+  border-radius: 10px;
   text-align: center;
 }
 
 .barText {
   display: inline-block;
   vertical-align: middle;
+}
+
+.barLabelYAxis {
+  writing-mode: vertical-rl;
+  color: aliceblue;
+  display: inline;
+  vertical-align: auto;
+  padding-bottom: 20px;
+}
+
+.barLabelXAxis {
+  text-align: center;
+  color: aliceblue;
+}
+
+.colorPicker {
+  display: block;
+  height: 50px;
+  width: 50px;
+  background-color: blue;
 }
