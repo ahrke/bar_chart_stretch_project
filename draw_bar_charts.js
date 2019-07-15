@@ -6,15 +6,23 @@ function getBarHeight(numOfBars, height){
   return height / numOfBars;
 }
 
-function changeColor(barNum, chart, color) {
-  var searchQuery = '"#bar' + barNum + "of" + chart + '"';
-  alert(searchQuery)
-  document.querySelector(searchQuery).style.backgroundColor = '"' + color + '"';
+function changeColor(searchQuery, color) {
+  document.querySelector(searchQuery).style.backgroundColor = color;
+  alert(document.querySelector("#colorPick").value)
   return alert("whoa wee, changing colors!")
 }
 
+function buildColorForm(barNum, chart) {
+  var searchQuery = '#bar' + barNum + "of" + chart;
+  var x = document.createElement("INPUT");
+  x.setAttribute("type","color");
+  alert(x.value)
+
+  changeColor(searchQuery, x.value)
+}
+
 function buildBar(data, options){
-  const colors = ["#33FFA4", "#339EFF", "red", "purple","rgb(63, 59, 119)"]
+  const colors = ["#33FFA4", "#339EFF", "rgb(256, 159, 119)", "rgb(163, 59, 19)","rgb(63, 59, 119)"]
   var height = options.height;
   var width = options.width;
   var title = options.title;
@@ -42,8 +50,8 @@ function buildBar(data, options){
     + "<div class='bars'>"
 
   for(var i = 0; i < data.length; i++){
-    chartStr +=
-      "<div class='bar' id='"
+    chartStr += "<div>"
+      + "<input class='bar jscolor {valueElement: null, value: " + '"' + colors[i] + '"' + "}' id='"
       + "bar" + i + "of" + chartName
       + "' style='background-color:"
       + colors[i]
@@ -51,13 +59,16 @@ function buildBar(data, options){
       + ((data[i]/sum) * width)
       + "px; height:"
       + barHeight
-      + "px'><span class='barText' style='font-size: "
+      + "px' "
+      + "onclick=" + '"changeColor(' + i + ',' + "'" + chartName + "'" + ',' + "'blue'" + ')">'
+      + "</input>"
+      + "<h2 class='barText' style='font-size: "
       + textHeight
       + "px; margin: "
       + (textHeight * 1.5)
       + "px 10px'>"
       + data[i]
-      + "</span>"
+      + "</h2>"
       + "</div>"
   }
 
@@ -66,7 +77,7 @@ function buildBar(data, options){
   chartStr += "</div>"
     + "<h2 class='barLabelXAxis'>" + xAxisLabel + "</h2>"
     + "</div>"
-    + "<div class='colorPicker' onclick=" + '"changeColor(1,"battlestar","blue")"' + "></div>"
+    + "<div class='colorPicker' onclick=" + '"buildColorForm(1,' + "'battlestar'" + ')"' + "></div>"
 
   //changeColor(1,"battlestar","blue")
   return chartStr
