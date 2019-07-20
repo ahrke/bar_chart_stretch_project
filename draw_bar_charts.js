@@ -21,6 +21,24 @@ function buildColorForm(barNum, chart) {
   changeColor(searchQuery, x.value)
 }
 
+function maxGraphYValue(largestNum) {
+  var temp = largestNum.toString()
+  var length = temp.length
+
+  var val = (parseInt(temp[0]) + 1) * (10 ** (length-1))
+  return val;
+}
+
+function yAxisValuesDiv(endValue) {
+  var yAxisValues = '<div class="yAxisValues">'
+  for(var i = 0; i < 1.10; i += 0.15) {
+    yAxisValues += '<span>' + Math.round(endValue * i) + '</span>'
+  }
+  yAxisValues += '</div>'
+
+  return yAxisValues
+}
+
 function buildBar(data, options){
   const colors = ["#33FFA4", "#339EFF", "rgb(256, 159, 119)", "rgb(163, 59, 19)","rgb(63, 59, 119)"]
   var height = options.height;
@@ -31,10 +49,15 @@ function buildBar(data, options){
   var xAxisLabel = options.xAxis || "Sample X Axis";
   var barHeight = getBarHeight(data.length,height);
   var textHeight = barHeight/4
-  var sum = 0
+  var largestNum = 0
+
 
   data.forEach(num => {
-    (num > sum) ? sum = num : sum = sum
+    if(num.length > 1){
+      (num[1] > largestNum) ? largestNum = num[1] : largestNum = largestNum;
+    } else {
+      (num > largestNum) ? largestNum = num : largestNum = largestNum;
+    }
   });
 
   var testForAttributeValue = '"#bar1ofwonderful"'
@@ -50,34 +73,43 @@ function buildBar(data, options){
     + "<div class='bars'>"
 
   for(var i = 0; i < data.length; i++){
-    chartStr += "<div>"
-      + "<input class='bar jscolor {valueElement: null, value: " + '"' + colors[i] + '"' + "}' id='"
+    var label = '';
+    var value;
+    if(data[i].length > 1){
+      label = data[i][0]
+      value = data[i][1]
+    } else {
+      label = data[i]
+      value = data[i]
+    }
+    chartStr += "<div class='bar'>"
+      + "<span class='barText' style='font-size: "
+      + textHeight
+      + "px; margin: "
+      + (textHeight * 1.5)
+      + "px 10px'>"
+      + label
+      + "</span>"
+      + "<input type='button' class='barBlock jscolor {valueElement: null, value: " + '"' + colors[i] + '"' + "}' id='"
       + "bar" + i + "of" + chartName
       + "' style='background-color:"
       + colors[i]
       + "; width:"
-      + ((data[i]/sum) * width)
+      + ((value/(largestNum * 1.1)) * width)
       + "px; height:"
       + barHeight
       + "px' "
       + "onclick=" + '"changeColor(' + i + ',' + "'" + chartName + "'" + ',' + "'blue'" + ')">'
       + "</input>"
-      + "<h2 class='barText' style='font-size: "
-      + textHeight
-      + "px; margin: "
-      + (textHeight * 1.5)
-      + "px 10px'>"
-      + data[i]
-      + "</h2>"
       + "</div>"
   }
 
   // alert(chartStr)
 
   chartStr += "</div>"
+    + yAxisValuesDiv(largestNum)
     + "<h2 class='barLabelXAxis'>" + xAxisLabel + "</h2>"
     + "</div>"
-    + "<div class='colorPicker' onclick=" + '"buildColorForm(1,' + "'battlestar'" + ')"' + "></div>"
 
   //changeColor(1,"battlestar","blue")
   return chartStr

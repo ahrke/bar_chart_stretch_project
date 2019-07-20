@@ -9,22 +9,18 @@
 <body>
   <h1 class='title'>Hello World! This is my Bar Chart</h1>
 
-  <input
-    class="jscolor {valueElement:null,value:'66ccff'}"
-    style="width:50px; height:20px; background-color: 'blue';border: 0em;"></input>
-
 
   <div id="charts"></div>
 
-    <a href="http://jquery.com/">jQuery</a>
     <script src="./src/jquery-3.4.1.js"></script>
     <script src="./jscolor.js"></script>
     <script src="./index.js"></script>
     <script src="./draw_bar_charts.js"></script>
 
     <script>
-      drawBarCharts([10,12,5,22],{width:600,height:300, name: "battlestar", title: "Bears Vs Beets"},"#charts")
-      drawBarCharts([19443,43250,8908,15930, 96302],{width:600,height:300,textLocation:'left',title: "My wonderful chart", name: "wonderful", yAxis: "Year", xAxis: "Unicorn Blessings"},"#charts")
+      drawBarCharts([[2010,1082],[2011,886],[2012,1598],[2013,2237]],{width:1000,height:300, name: "numOfSales", yAxis: 'Year', xAxis: 'Number of Sales', title: "Annual Sales"},"#charts")
+      drawBarCharts([10,12,5,22],{width:1000,height:300, name: "battlestar", title: "Bears Vs Beets"},"#charts")
+      drawBarCharts([19443,43250,8908,15930, 96302],{width:1000,height:300,textLocation:'left',title: "My wonderful chart", name: "wonderful", yAxis: "Year", xAxis: "Unicorn Blessings"},"#charts")
       drawBarCharts([1004452,521840,78342,373398,484331],{width:600,height:300, name: "project", title: "Project 1 Interest Levels Throughout Past Decade"},"#charts")
       drawBarCharts([58,12,33,42],{width:600,height:300, name: "Bites", title: "Number of Annual Mosquito Bites"},"#charts")
     </script>
