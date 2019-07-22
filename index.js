@@ -1,5 +1,5 @@
 $(function() {
-  alert("Ready!\nThis is from the index.js file")
+  console.log("Ready!\nThis is from the index.js file")
 })
 
 $( "a" ).click(function( event ) {
